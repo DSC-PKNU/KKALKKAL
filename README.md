@@ -1,0 +1,2 @@
+# KKALKKAL
+DSC 해커톤 - Team KKALKKAL
