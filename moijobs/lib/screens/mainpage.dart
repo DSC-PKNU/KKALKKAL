@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 int index = 10;
+
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class MainPage extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      '지역',
+                      '지역별',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -107,77 +109,54 @@ class MainPage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                '게시글',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 20),
-              ),
+            Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    '게시글',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20),
+                  ),
+                ),
+                Icon(
+                  Icons.refresh,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
             ),
             Expanded(
               child: Container(
-                child:
-                ListView(
+                child: ListView(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shadowColor: Colors.grey,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(
-                          child: Text(
-                            '[부산] 2021 청년지원사업',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ),
+                    ReusalbleCard(
+                      cardtext: '[부산] 2021 청년지원사업',
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(
-                          child: Text(
-                            '[서울] 2021 청년지원사업',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ),
+                    ReusalbleCard(
+                      cardtext: '[광주] 2021 청년지원사업',
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(
-                          child: Text(
-                            '[경남] 2021 청년지원사업',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ),
+                    ReusalbleCard(
+                      cardtext: '[경남] 2021 청년지원사업',
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(
-                          child: Text(
-                            '[광주] 2021 청년지원사업',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ),
+                    ReusalbleCard(
+                      cardtext: '[서울] 2021 청년지원사업',
+                    ),
+                    ReusalbleCard(
+                      cardtext: '[충북] 2021 청년지원사업',
+                    ),
+                    ReusalbleCard(
+                      cardtext: '[충남] 2021 청년지원사업',
+                    ),
+                    ReusalbleCard(
+                      cardtext: '[인천] 2021 청년지원사업',
+                    ),
+                    ReusalbleCard(
+                      cardtext: '[강원도] 2021 청년지원사업',
                     ),
                   ],
                 ),
@@ -219,28 +198,24 @@ class MainPage extends StatelessWidget {
 }
 
 class ReusalbleCard extends StatelessWidget {
-  ReusalbleCard({this.cardtext, this.cardpagechange});
-  final Widget cardpagechange;
+  ReusalbleCard({
+    this.cardtext,
+  });
   final String cardtext;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: FlatButton(
-        child: Text(
-          '$cardtext',
-          style: TextStyle(fontSize: 30),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        shadowColor: Colors.grey,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Center(
+          child: Text(
+            '$cardtext',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
-        height: 100,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return cardpagechange;
-              },
-            ),
-          );
-        },
       ),
     );
   }
