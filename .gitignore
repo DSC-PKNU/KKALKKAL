@@ -49,7 +49,7 @@ moijobs/lib/generated_plugin_registrant.dart
 **/android/key.properties
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-**/android/grandle.properties
+**/android/gradle.properties
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
