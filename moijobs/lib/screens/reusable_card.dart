@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moijobs/screens/new_post.dart';
 
 class ReusableCard extends StatelessWidget {
   ReusableCard({@required this.text});
@@ -23,6 +24,14 @@ class ReusableCard extends StatelessWidget {
             ),
           ),
           onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return NewPost();
+                },
+              ),
+            );
             print('pressed');
           },
         ),

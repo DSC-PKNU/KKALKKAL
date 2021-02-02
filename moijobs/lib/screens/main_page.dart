@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'profilepage.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
+import 'new_post.dart';
 import 'dart:async';
 
 class MainPage extends StatefulWidget {
@@ -201,15 +202,12 @@ class _MainPageState extends State<MainPage> {
                   ),
                   FlatButton(
                     onPressed: () {
-                      Timer(
-                        Duration(milliseconds: 500),
-                        () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return ProfilePage();
-                            },
-                          ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return ProfilePage();
+                          },
                         ),
                       );
                       setState(() {});
