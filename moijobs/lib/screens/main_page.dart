@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'profilepage.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
-
-const inActiveiconColour = Color(0xFFCEDAF6);
-const activeiconColour = Color(0xFF209FA6);
+import 'dart:async';
 
 class MainPage extends StatefulWidget {
   @override
@@ -12,35 +11,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  Color homeiconColour = activeiconColour;
-  Color fileiconColour = inActiveiconColour;
-  Color profileiconColour = inActiveiconColour;
-  Color settingiconColour = inActiveiconColour;
-
-  void updateColour(int category) {
-    if (category == 1) {
-      homeiconColour = activeiconColour;
-      fileiconColour = inActiveiconColour;
-      profileiconColour = inActiveiconColour;
-      settingiconColour = inActiveiconColour;
-    } else if (category == 2) {
-      homeiconColour = inActiveiconColour;
-      fileiconColour = activeiconColour;
-      profileiconColour = inActiveiconColour;
-      settingiconColour = inActiveiconColour;
-    } else if (category == 3) {
-      homeiconColour = inActiveiconColour;
-      fileiconColour = inActiveiconColour;
-      profileiconColour = activeiconColour;
-      settingiconColour = inActiveiconColour;
-    } else if (category == 4) {
-      homeiconColour = inActiveiconColour;
-      fileiconColour = inActiveiconColour;
-      profileiconColour = inActiveiconColour;
-      settingiconColour = activeiconColour;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
@@ -147,7 +117,11 @@ class _MainPageState extends State<MainPage> {
                 padding: const EdgeInsets.only(left: 35, top: 20, bottom: 20),
                 child: Text(
                   '게시글',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1A202C),
+                  ),
                 ),
               ),
               Expanded(
@@ -204,53 +178,58 @@ class _MainPageState extends State<MainPage> {
                   FlatButton(
                     onPressed: () {
                       setState(() {
-                        updateColour(1);
                         print('pressed');
                       });
                     },
                     child: IconContent(
                       topicon: Icons.home_filled,
                       bottomicon: Icons.arrow_drop_up_rounded,
-                      colour: homeiconColour,
+                      colour: Color(0xFF209FA6),
                     ),
                   ),
                   FlatButton(
                     onPressed: () {
                       setState(() {
-                        updateColour(2);
                         print('pressed');
                       });
                     },
                     child: IconContent(
                       topicon: Icons.folder,
                       bottomicon: Icons.arrow_drop_up_rounded,
-                      colour: fileiconColour,
+                      colour: Color(0xFFFA9124),
                     ),
                   ),
                   FlatButton(
                     onPressed: () {
-                      setState(() {
-                        updateColour(3);
-                        print('pressed');
-                      });
+                      Timer(
+                        Duration(milliseconds: 500),
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return ProfilePage();
+                            },
+                          ),
+                        ),
+                      );
+                      setState(() {});
                     },
                     child: IconContent(
                       topicon: Icons.person_rounded,
                       bottomicon: Icons.arrow_drop_up_rounded,
-                      colour: profileiconColour,
+                      colour: Color(0xFF3391E7),
                     ),
                   ),
                   FlatButton(
                     onPressed: () {
                       setState(() {
-                        updateColour(4);
                         print('pressed');
                       });
                     },
                     child: IconContent(
                       topicon: Icons.settings,
                       bottomicon: Icons.arrow_drop_up_rounded,
-                      colour: settingiconColour,
+                      colour: Color(0xFFFA5A7D),
                     ),
                   ),
                 ],

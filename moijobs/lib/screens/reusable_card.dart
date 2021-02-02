@@ -15,10 +15,14 @@ class ReusableCard extends StatelessWidget {
           child: Center(
             child: Text(
               '부산\n 수정 중\n2021',
-              style: TextStyle(fontSize: 20,),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1A202C),
+              ),
             ),
           ),
-          onPressed: (){
+          onPressed: () {
             print('pressed');
           },
         ),
