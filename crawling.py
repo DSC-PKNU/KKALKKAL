@@ -157,22 +157,6 @@ for i,j in zip(URL,TITLE):
     
     
 
-    
-#########json 으로 저장하기#######
-
-
-for i in products:
-  print(i)
-
-file = open("./GN.json","w+")
-file.write(json.dumps(products))
-
-
-########json파일 읽어보기##########
-with open('/content/GN.json', 'r') as f:
-    json_data = json.load(f)
-print(json.dumps(json_data,indent="\t"))
-
 
 
 
@@ -201,24 +185,23 @@ for i in pstitle:
     print(url)    # 링크 주소('href') 부분만 출력
     print()
 
-'''필요한 데이터만 뽑기'''
-psProducts=[]
+'''필요한 데이터만 뽑아서 json형태로 저장'''
 for i,j in zip(psURL,psTITLE):
   if j.rfind('사업장')==-1 and j.rfind('업체')==-1 and j.rfind('기업')==-1 or j.rfind('청년 모집')>0 or j.rfind('청년구직')>0 or j.rfind('참여청년')>0:
             print("부산 :  "+i+"   "+j)
             product = {"region": '부산', "title": j, "link": i}
-            psProducts.append(product)
+            products.append(product)  
 
-'''json 형태로 변환'''
-for i in psProducts:
+'''json 형태 확인'''
+for i in products:
   print(i)
 
 '''json 으로 저장'''
-file = open("./PS.json","w+")
-file.write(json.dumps(psProducts))
+file = open("./data.json","w+")
+file.write(json.dumps(products))
 
 
 #'''json 열어보기'''
-#with open('/content/PS.json','r') as g:
-#    psjson_data = json.load(g)
-#print(json.dumps(psjson_data,indent="\t"))
+#with open('/content/data.json','r') as g:
+#    json_data = json.load(g)
+#print(json.dumps(json_data,indent="\t"))
