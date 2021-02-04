@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'main_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,17 +8,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  //GetInformation getinformation = GetInformation();
+
   @override
   void initState() {
     super.initState();
+    //getinformation.getData();
     _init();
   }
 
   void _init() async {
-    // var _duration = Duration(seconds: 4);
-    // await Future.delayed(_duration, (){
-    //
-    // } );
     Timer(
       Duration(seconds: 2),
       () => Navigator.pushAndRemoveUntil(
