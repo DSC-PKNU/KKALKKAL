@@ -6,6 +6,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 
 class NewPost extends StatefulWidget {
+  final String title;
+  final String link;
+  NewPost(this.title, this.link);
+
   @override
   _NewPostState createState() => _NewPostState();
 }
@@ -22,10 +26,11 @@ class _NewPostState extends State<NewPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('[부산] 청년 일자리 사업'),
+        backgroundColor: Color(0xFF209FA6),
+        title: Text('${widget.title}'),
       ),
       body: WebView(
-        initialUrl: '',
+        initialUrl: '${widget.link}',
       ),
     );
   }
