@@ -192,6 +192,140 @@ for i,j in zip(psURL,psTITLE):
             product = {"region": '부산', "title": j, "link": i}
             products.append(product)  
 
+
+############################################################
+##################울산 청년 일자리 지원 사이트##############
+############################################################
+#사이트1
+''' 제목 크롤링'''
+ushtml = urlopen("https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&mId=001004001001000000")  
+soup = BeautifulSoup(ushtml, "html.parser") 
+ushotKeys = soup.select("td > a")
+usTITLE=[]
+for key in ushotKeys:
+    print(key.text.strip())
+    usTITLE.append(key.text.strip())
+
+
+''' 링크 크롤링'''
+ustitle = soup.select("td > a")
+usURL=[]
+for i in ustitle:
+    url="https://www.ulsan.go.kr/u/rep/bbs"+i.attrs['href'][1:]
+    usURL.append(url)
+    print(url)    # 링크 주소('href') 부분만 출력
+    print()
+
+
+#사이트2
+''' 제목2 크롤링'''
+us2html = urlopen("http://yhf.kr/dongnam/training/trainList.do?category_cd=T1004")  
+soup2 = BeautifulSoup(us2html, "html.parser") 
+us2hotKeys = soup2.select("li > a > p")
+us2TITLE=[]
+for key in us2hotKeys:
+    print(key.text.strip())
+    us2TITLE.append(key.text.strip())
+
+
+''' 링크2 크롤링'''
+us2title = soup2.select("div > div > ul > li > a")
+us2URL=[]
+for i in us2title:
+    url="http://yhf.kr"+i.attrs['href']
+    us2URL.append(url)
+    print(url)    # 링크 주소('href') 부분만 출력
+    print()
+
+
+''' jason 형태로 저장'''
+#사이트1
+print('사이트1')
+for i,j in zip(usURL,usTITLE):
+  if j.rfind('청년')>0 and j.rfind('사업장')==-1 and j.rfind('업체')==-1 and j.rfind('기업')==-1 or j.rfind('청년 모집')>0 or j.rfind('청년구직')>0 or j.rfind('참여청년')>0:
+            print("울산 :  "+i+"   "+j)
+            product = {"region": '울산', "title": j, "link": i}
+            products.append(product)
+print('사이트2')
+#사이트2
+for i,j in zip(us2URL,us2TITLE):
+    print("울산 :  "+i+"   "+j)
+    product = {"region": '울산', "title": j, "link": i}
+    products.append(product)
+
+
+############################################################
+##################대구 청년 일자리 지원 사이트##############
+############################################################
+''' 제목 크롤링'''
+dghtml = urlopen("http://www.dgyouth.kr/board/notice.asp")  
+soup = BeautifulSoup(dghtml, "html.parser") 
+dghotKeys = soup.select("dd > a > div > em")
+dgTITLE=[]
+for key in dghotKeys:
+    print(key.text.strip())
+    dgTITLE.append(key.text.strip())
+
+''' 링크 크롤링'''
+dgtitle = soup.select("dl > dd > a")
+dgURL=[]
+for i in dgtitle:
+    url="http://www.dgyouth.kr/board/"+i.attrs['href']
+    dgURL.append(url)
+    print(url)    # 링크 주소('href') 부분만 출력
+    print()
+
+
+''' jason 형태로 저장'''
+for i,j in zip(dgURL,dgTITLE):
+  if j.rfind('청년')>0 and j.rfind('사업장')==-1 and j.rfind('업체')==-1 and j.rfind('기업')==-1 and j.rfind('합격자')==-1 and j.rfind('행정예고')==-1 and j.rfind('최종')==-1 or j.rfind('청년 모집')>0 or j.rfind('청년구직')>0 or j.rfind('참여청년')>0:
+            print("대구 :  "+i+"   "+j)
+            product = {"region": '대구', "title": j, "link": i}
+            products.append(product)
+
+
+
+############################################################
+##################서울 청년 일자리 지원 사이트##############
+############################################################
+''' 제목 크롤링'''
+suhtml = urlopen("https://youth.seoul.go.kr/site/main/board/notice/list?baCategory1=basic&baCommSelec=true")  
+soup = BeautifulSoup(suhtml, "html.parser") 
+suhotKeys = soup.select("tbody > tr > td > a")
+suTITLE=[]
+for key in suhotKeys:
+    print(key.text.strip())
+    suTITLE.append(key.text.strip())
+
+''' 링크 크롤링'''
+sutitle = soup.select("tbody > tr > td > a")
+suURL=[]
+for i in sutitle:
+    url="https://youth.seoul.go.kr"+i.attrs['href']
+    suURL.append(url)
+    print(url)    # 링크 주소('href') 부분만 출력
+    print()
+
+''' jason 형태로 저장'''
+for i,j in zip(suURL,suTITLE):
+  k=j.split("\r\n\t\t\t\t\t\t\t\t\t\t\t\t")
+  if j.rfind('청년')>0 and j.rfind('사업장')==-1 and j.rfind('업체')==-1 and j.rfind('기업')==-1 and j.rfind('합격자')==-1 and j.rfind('행정예고')==-1 and j.rfind('최종')==-1 or j.rfind('청년 모집')>0 or j.rfind('청년구직')>0 or j.rfind('참여청년')>0:
+            print("서울 :  "+i+"   "+k[0])
+            product = {"region": '서울', "title": k[0], "link": i}
+            products.append(product)
+
+
+
+
+
+print("########################################################################")
+print("################################최종 json###############################")
+print("########################################################################")
+for i in products:
+  print(i)
+
+
+
 '''json 형태 확인'''
 for i in products:
   print(i)
