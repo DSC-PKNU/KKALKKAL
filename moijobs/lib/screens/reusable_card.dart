@@ -1,41 +1,100 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:moijobs/screens/new_post.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'new_post.dart';
 
-class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.text});
-  final String text;
+
+Future <List<Post>> fetchPost() async {
+  final response = await http.get('https://jsonplaceholder.typicode.com/posts');
+  if(response.statusCode == 200){
+    List list = jsonDecode(response.body);
+    var postList = list.map((element) => Post.fromJson(element)).toList();
+    return postList;
+  }
+  else{
+    throw Exception('Failed to load post');
+  }
+}
+
+class Post{
+  final String region;
+  final String city;
+  final String title;
+  final String link;
+
+  Post({this.region, this.city, this.title, this.link});
+
+  factory Post.fromJson(Map<String,dynamic> json){
+    return Post(
+      region: json['region'],
+      city: json['city'],
+      title: json['title'],
+      link: json['link'],
+    );
+  }
+}
+
+class ReusableCard extends StatefulWidget {
+  @override
+  _ReusableCardState createState() => _ReusableCardState();
+}
+
+class _ReusableCardState extends State<ReusableCard> {
+  Future<List<Post>> postList;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    postList = fetchPost();
+    print(postList);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Material(
-        color: Color(0xFFF5F9FF),
-        elevation: 5.0,
-        borderRadius: BorderRadius.circular(20),
-        child: FlatButton(
-          child: Center(
-            child: Text(
-              '부산\n 수정 중\n2021',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1A202C),
-              ),
-            ),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return NewPost();
-                },
-              ),
-            );
-            print('pressed');
-          },
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+            child: FutureBuilder<List<Post>>(
+              future: postList,
+              builder: (context, snapshot){
+                if(snapshot.hasData){
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index){
+                      Post post = snapshot.data[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Row(children: [Text('[${post.region}]'), Text(' [${post.city}]')],),
+                              subtitle: Text(post.title),
+                              // onTap: (){
+                              //   Navigator.push(
+                              //       context, MaterialPageRoute(builder: (context) => NewPost())
+                              //   );
+                              // },
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }
+                else if(snapshot.hasError){
+                  return Text("${snapshot.error}");
+                }
+                return Center(child: CircularProgressIndicator());
+              },
+            )
         ),
       ),
     );
   }
 }
+

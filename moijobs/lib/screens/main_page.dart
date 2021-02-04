@@ -4,7 +4,6 @@ import 'profilepage.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
 import 'new_post.dart';
-import 'dart:async';
 
 class MainPage extends StatefulWidget {
   @override
@@ -12,6 +11,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
@@ -141,28 +146,12 @@ class _MainPageState extends State<MainPage> {
           ),
           Expanded(
             child: Container(
-              child: ListView(
-                children: [
-                  ReusableCard(
-                    text: '부산\n 수정 중\n2021',
-                  ),
-                  ReusableCard(
-                    text: '부산\n 수정 중\n2021',
-                  ),
-                  ReusableCard(
-                    text: '부산\n 수정 중\n2021',
-                  ),
-                  ReusableCard(
-                    text: '부산\n 수정 중\n2021',
-                  ),
-                  ReusableCard(
-                    text: '부산\n 수정 중\n2021',
-                  ),
-                  ReusableCard(
-                    text: '부산\n 수정 중\n2021',
-                  ),
-                ],
-              ),
+              child: ReusableCard()
+              // ListView(
+              //   children: [
+              //     ReusableCard(),
+              //   ],
+              // ),
             ),
           ),
           SizedBox(

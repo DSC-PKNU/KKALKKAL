@@ -4,29 +4,14 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:webview_flutter/webview_flutter.dart';
 
+
 class NewPost extends StatefulWidget {
   @override
   _NewPostState createState() => _NewPostState();
 }
 
-// const String kNavigationExamplePage = '''
-// <!DOCTYPE html><html>
-// <head><title>Navigation Delegate Example</title></head>
-// <body>
-// <p>
-// The navigation delegate is set to block navigation to the youtube website.
-// </p>
-// <ul>
-// <ul><a href="https://www.youtube.com/">https://www.youtube.com/</a></ul>
-// <ul><a href="https://www.google.com/">https://www.google.com/</a></ul>
-// </ul>
-// </body>
-// </html>
-// ''';
-
 class _NewPostState extends State<NewPost> {
-  // final Completer<WebViewController> _controller =
-  // Completer<WebViewController>();
+
 
   @override
   void initState() {
@@ -40,7 +25,7 @@ class _NewPostState extends State<NewPost> {
         title: Text('[부산] 청년 일자리 사업'),
       ),
       body: WebView(
-        initialUrl: 'https://www.busan.go.kr/nhot/1472526',
+        initialUrl: '',
       ),
     );
   }
