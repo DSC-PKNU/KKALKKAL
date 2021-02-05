@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    //getinformation.getData();
     _init();
   }
 
@@ -23,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (BuildContext context) => MainPage()),
-            (route) => false,
+        (route) => false,
       ),
     );
 
@@ -44,29 +43,46 @@ class _SplashScreenState extends State<SplashScreen> {
       home: Scaffold(
         backgroundColor: Color(0xFF209FA6),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(
-                backgroundColor: Colors.white,
-                strokeWidth: 6,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'loading...',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  shadows: [
-                    Shadow(offset: Offset(4, 4), color: Colors.white10),
-                  ],
-                  decorationStyle: TextDecorationStyle.solid,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Color(0xFF209FA6), Colors.white]),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    child: Image(
+                      image: AssetImage('images/appicon.png'),
+                    ),
+                  ),
                 ),
-              )
-            ],
+                // CircularProgressIndicator(
+                //   backgroundColor: Colors.white,
+                //   strokeWidth: 6,
+                // ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'loading...',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(offset: Offset(4, 4), color: Colors.white10),
+                    ],
+                    decorationStyle: TextDecorationStyle.solid,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
