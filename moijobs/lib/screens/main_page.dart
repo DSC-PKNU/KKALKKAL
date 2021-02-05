@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'profilepage.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
-import 'new_post.dart';
+import 'search_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -37,9 +37,6 @@ class _MainPageState extends State<MainPage> {
                 Padding(
                   padding: EdgeInsets.only(top: statusBarHeight),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
                 Row(
                   children: [
                     Padding(
@@ -50,12 +47,11 @@ class _MainPageState extends State<MainPage> {
                     ),
                     Expanded(
                       child: Center(
-                        child: Text(
-                          'MoiJobs',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1A202C),
+                        child: Container(
+                          height: 130,
+                          width: 200,
+                          child: Image(
+                            image: AssetImage('images/appicon.png'),
                           ),
                         ),
                       ),
@@ -82,29 +78,44 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         padding: EdgeInsets.symmetric(
                           vertical: 10,
                         ),
                         margin: EdgeInsets.symmetric(
                           horizontal: 35,
                         ),
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
+                        child: FlatButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return SearchExample();
+                                },
+                              ),
+                            );
+                            setState(() {});
+                          },
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                '검색',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color(0xFFCEDAF6),
+                                ),
+                              ),
                             ),
-                            filled: true,
-                            fillColor: Color(0xFFF7FAFF),
-                            hintText: '검색',
-                            hintStyle: TextStyle(
-                                fontSize: 20, color: Color(0xFFCEDAF6)),
                           ),
                         ),
                       ),
@@ -136,7 +147,7 @@ class _MainPageState extends State<MainPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20, right: 10, bottom: 20),
                 child: FlatButton(
-                  child: Icon(Icons.arrow_forward),
+                  child: Icon(Icons.refresh),
                   onPressed: () {
                     print('pressed');
                   },
@@ -145,14 +156,13 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
           Expanded(
-            child: Container(
-              child: ReusableCard()
-              // ListView(
-              //   children: [
-              //     ReusableCard(),
-              //   ],
-              // ),
-            ),
+            child: Container(child: ReusableCard()
+                // ListView(
+                //   children: [
+                //     ReusableCard(),
+                //   ],
+                // ),
+                ),
           ),
           SizedBox(
             height: 20,
