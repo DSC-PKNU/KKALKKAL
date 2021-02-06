@@ -1,4 +1,3 @@
-# 다JOB다
 <img src="https://github.com/DSC-PKNU/KKALKKAL/blob/main/assets/dajobda.png" width="300" height="300">
 
 ## ✨ Introduction
