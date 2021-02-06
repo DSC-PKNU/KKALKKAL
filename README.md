@@ -6,7 +6,7 @@
 * 국가 고용 지원 사업의 구인 공고를 한눈에 볼 수 있고 지역, 제목 별 검색이 가능해 필요한 정보를 빠르게 확인할 수 있다
 </br>
 
-## 👨‍👧‍👧 Team
+## 👪 Team
 * Front: [이형욱](https://github.com/luke0421), [김하은](https://github.com/flyingpenguin2)
 * Back: [안정은](https://github.com/jxxxxe)
 * Data Crawlling: [김병준](https://github.com/BangDoon)
@@ -16,7 +16,7 @@
 * Front(Mobile): Flutter
 * Back: Spring Boot
 * DB: MariaDB
-* Crawling: python
+* Crawling: Python
 </br>
 
 ## 📽 Demo
