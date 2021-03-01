@@ -7,7 +7,7 @@
 </br>
 
 ## 👪 Team
-* Front: [이형욱](https://github.com/luke0421), [김하은](https://github.com/flyingpenguin2)
+* Front: [이형욱](https://github.com/luke0421)
 * Back: [안정은](https://github.com/jxxxxe)
 * Data Crawling: [김병준](https://github.com/BangDoon)
 </br>
